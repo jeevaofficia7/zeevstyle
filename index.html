@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My E-commerce</title>
+    <link rel="icon" href="models/handsome-man-dancing.png" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Smooch+Sans:wght@100..900&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: var(--roboto);
+      }
+
+      /*root store*/
+      :root {
+        --roboto: "Roboto", serif;
+        --smooch: "Smooch Sans", serif;
+      }
+
+      body {
+        scroll-behavior: smooth;
+        font-family: var(--smooch);
+      }
+
+      /*hamburger*/
+      #hamburger {
+        display: none; /*default display none only active mobile view*/
+      }
+
+      /*hamburger style*/
+      #hamburger .lines {
+        height: 3px;
+        width: 30px;
+        background-color: black;
+        display: block;
+        margin-top: 4px;
+      }
+
+      marquee {
+        background-color: white;
+        padding: 2px;
+        display: flex;
+      }
+
+      /*header style*/
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 23px 5%;
+        background-color: white;
+        color: black;
+        font-size: 15px;
+        font-weight: 500;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        box-shadow: 0 -5px 10px black;
+      }
+
+      nav {
+        position: absolute;
+        right: 230px;
+      }
+
+      /*search-container*/
+      #search-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+        right: 730px;
+      }
+
+      #search-container input {
+        padding: 12px 16px;
+        width: 300px;
+        border: none;
+        border-radius: 20px;
+        background-color: whitesmoke;
+        color: black;
+        outline: none;
+      }
+
+      #search-container i {
+        color: black;
+        position: absolute;
+        right: 20px;
+      }
+
+      /*navlinks or ul*/
+      header #navlinks {
+        list-style-type: none;
+        display: flex;
+        column-gap: 45px;
+      }
+
+      #navlinks li a {
+        text-decoration: none;
+        color: black;
+      }
+
+      header button {
+        padding: 13px 15px;
+        border: none;
+        font-weight: 500;
+        background-color: whitesmoke;
+        color: black;
+        border-radius: 5px;
+        cursor: pointer;
+        position: absolute;
+        right: 100px;
+        font-weight: 700;
+      }
+      header button:hover {
+        background-color: darkgray;
+      }
+
+      .fa-chevron-down {
+        font-size: 12px;
+        margin-left: 5px;
+      }
+
+      #navlinks li a:hover {
+        color: orange;
+      }
+
+      .fa-moon {
+        position: absolute;
+        right: 50px;
+      }
+
+      /*-------header completd----------*/
+
+      /*hero-section start*/
+      #hero-section {
+        position: relative;
+        background-color: whitesmoke;
+        max-height: 100%;
+        overflow: hidden;
+      }
+
+      #hero-section #hero-contents {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 120px 10%;
+        row-gap: 25px;
+      }
+
+      /*hero contents h1*/
+      #hero-contents h1 {
+        font-size: 40px;
+        max-width: 40%;
+        font-weight: 900;
+      }
+
+      #hero-contents p {
+        max-width: 45%;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      /*hero-contents button*/
+      #hero-contents button {
+        padding: 15px 30px;
+        border: none;
+        background-color: #111;
+        color: white;
+        border-radius: 20px;
+      }
+
+      #hero-contents .fa-shopping-bag {
+        margin-left: 5px;
+      }
+
+      /*articles-container*/
+      #hero-section #articles-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 60px;
+      }
+
+      #articles-container article {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+      }
+
+      #hero-section #articles-container h2 {
+        font-size: 30px;
+        font-weight: 600;
+      }
+
+      #hero-section #articles-container article a {
+        font-size: 13px;
+        text-decoration: none;
+        color: #222;
+      }
+
+      /*hero section figure img*/
+      #hero-section figure img {
+        width: 400px;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      #hero-section figure {
+        position: absolute;
+        right: 100px;
+        top: 0px;
+      }
+
+      /*brand section*/
+
+      #brands-section {
+        display: flex;
+        flex-direction: column;
+        row-gap: 50px;
+        margin: 80px 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url(models/model7.jpg) top/cover;
+        background-attachment: fixed;
+        background-color: #222;
+        padding: 60px 10%;
+      }
+
+      #brands-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 20px;
+        color: white;
+      }
+
+      #brands-content h1 {
+        font-size: 25px;
+      }
+
+      #brands-content p {
+        font-size: 14px;
+      }
+
+      #brands-content button {
+        padding: 12px 16px;
+        border: none;
+        background-color: #222;
+        color: white;
+      }
+
+      #brands-content button i {
+        margin-left: 5px;
+      }
+
+      #brands-container img {
+        height: 100%;
+        width: 100px;
+        object-fit: contain;
+      }
+
+      #brands-container {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        align-items: center;
+        column-gap: 50px;
+      }
+
+      marquee {
+        background-color: transparent;
+      }
+
+      #brands-container img {
+        filter: brightness(0) invert(1);
+      }
+
+      /*fashion section*/
+      #fashion-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 50px;
+      }
+
+      #fashion-section #fashion-contents {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 15px;
+      }
+      #fashion-section #fashion-contents h1 {
+        font-size: 30px;
+      }
+
+      #fashion-section #fashion-contents p {
+        font-size: 13px;
+      }
+
+      #fashion-container img {
+        height: 470px;
+        width: 330px;
+        object-fit: cover;
+        object-position: top;
+        background-color: gainsboro;
+        border-radius: 5px;
+      }
+
+      #fashion-container {
+        display: grid;
+        grid-template-columns: repeat(3, 300px);
+        column-gap: 100px;
+      }
+
+      #topwear-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 100px 6%;
+        row-gap: 20px;
+      }
+
+      #new-arrivals-contents {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 15px;
+        width: 100%;
+      }
+
+      #new-arrivals-contents h1 {
+        font-size: 30px;
+        color: darkslategrey;
+      }
+
+      #new-arrivals-contents p {
+        font-size: 13px;
+      }
+
+      #topwear-container img {
+        height: 230px;
+        width: 190px;
+        object-fit: cover;
+        object-position: center;
+        background-color: #555;
+        padding: 10px 0;
+        border-radius: 5px;
+      }
+
+      #topwear-container {
+        display: grid;
+        grid-template-columns: repeat(11, 1fr);
+        overflow-x: scroll;
+        max-width: 100%;
+        justify-content: flex-start;
+        column-gap: 50px;
+      }
+
+      #topwear-container article {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        row-gap: 20px;
+        font-weight: 500;
+        padding: 20px 0;
+        font-size: 13px;
+      }
+
+      #topwear-container article button {
+        padding: 10px 13px;
+        border: none;
+        font-weight: 500;
+        background-color: black;
+        color: white;
+      }
+
+      /*bottomwear container*/
+
+      #bottomwear-section {
+        display: flex;
+        flex-direction: column;
+        margin: 100px 6%;
+        row-gap: 20px;
+        max-width: 100%;
+      }
+
+      #bottomwear-contents {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        row-gap: 15px;
+        width: 100%;
+        padding: 0 4%;
+      }
+
+      #bottomwear-contents h1 {
+        font-size: 30px;
+        color: darkslategrey;
+      }
+
+      #bottomwear-contents p {
+        font-size: 13px;
+      }
+
+      #bottomwear-container {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        align-items: center;
+        overflow-x: auto;
+        max-width: 100%;
+        justify-content: flex-start;
+        column-gap: 40px;
+      }
+
+      #bottomwear-container img {
+        height: 250px;
+        width: 200px;
+        object-fit: cover;
+        object-position: bottom;
+        background-color: #555;
+        padding: 0 12px;
+        border-radius: 5px;
+      }
+
+      #bottomwear-container article {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        row-gap: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 20px 0;
+      }
+
+      #bottomwear-container article button {
+        padding: 10px 13px;
+        border: none;
+        font-weight: 500;
+        background-color: black;
+        color: white;
+      }
+
+      /*footwear*/
+
+      #footwear-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 100px 0;
+        row-gap: 20px;
+        width: 100%;
+      }
+
+      #footwear-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        align-items: flex-start;
+        overflow-x: scroll;
+        max-width: 100%;
+        column-gap: 10px;
+      }
+
+      #footwear-container img {
+        height: 300px;
+        width: 300px;
+        object-fit: cover;
+        background-color: #555;
+        border-radius: 5px;
+      }
+
+      #footwear-container article {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        row-gap: 20px;
+        font-weight: 500;
+        font-size: 13px;
+        padding: 20px 0;
+      }
+
+      #footwear-container article button {
+        padding: 10px 13px;
+        border: none;
+        font-weight: 500;
+        background-color: black;
+        color: white;
+      }
+
+      /*js dark mode style*/
+
+      .dark-mode {
+        background-color: #222;
+        color: white;
+      }
+
+      .dark-mode article button {
+        background-color: white;
+        color: black;
+      }
+
+      .dark-mode #hero-section {
+        background-color: black;
+        color: white;
+      }
+
+      .dark-mode header {
+        background-color: black;
+        color: white;
+      }
+
+      .dark-mode header #navlinks li a {
+        color: white;
+      }
+
+      .dark-mode header #search-container input {
+        background-color: #333;
+        color: whitesmoke;
+      }
+
+      .dark-mode #search-container i {
+        color: whitesmoke;
+      }
+
+      /*footer*/
+      footer {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
+        row-gap: 40px;
+        justify-items: center;
+        align-items: center;
+        margin-top: 100px;
+        background-color: black;
+        position: relative;
+        padding: 50px 0;
+        color: white;
+      }
+
+      footer ul {
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 13px;
+      }
+
+      footer h3 {
+        margin-bottom: 10px;
+      }
+
+      footer ul li {
+        margin-top: 20px;
+      }
+
+      #social-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        column-gap: 30px;
+      }
+
+      #social-links i {
+        margin-left: 5px;
+      }
+
+      #bottom-footer {
+        color: white;
+        font-size: 13px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        bottom: 0;
+        background-color: #222;
+        width: 100%;
+        text-align: center;
+
+        color: white;
+        font-weight: 500;
+
+        padding: 10px;
+      }
+
+      #hero-section figure img {
+        transition: transform 0.5s ease-in-out;
+      }
+
+      #hero-section figure img:hover {
+        transform: translateX(-50px);
+      }
+
+      /*resposnisive media queries*/
+      @media screen and (max-width: 578px) {
+        body {
+          font-size: 13px;
+        }
+
+        .dark-mode header {
+          background-color: #111;
+        }
+
+        /*header*/
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 15px 5%;
+          height: 80px;
+          position: sticky;
+          top: 0;
+          z-index: 10;
+        }
+
+        #hamburger {
+          display: block;
+          position: absolute;
+          top: 25px;
+          z-index: 5;
+        }
+
+        #navlinks {
+          display: flex;
+          flex-direction: column;
+          row-gap: 50px;
+          position: fixed;
+          left: -250px;
+          top: 0;
+          background-color: whitesmoke;
+          padding: 100px 20px;
+          width: 250px;
+          height: 100vh;
+          z-index: -1;
+        }
+
+        #logo-container {
+          position: absolute;
+          left: 80px;
+          top: 25px;
+        }
+
+        #logo-container h2 {
+          font-size: 18px;
+        }
+
+        header .fa-moon {
+          position: absolute;
+          top: 30px;
+          right: 40px;
+        }
+
+        header button {
+          position: absolute;
+          right: 70px;
+          top: 20px;
+          padding: 10px;
+          font-size: 12px;
+        }
+
+        #hero-section {
+          max-height: 100%;
+          position: relative;
+          overflow: hidden;
+        }
+
+        #hero-section figure {
+          position: absolute;
+          top: 300px;
+        }
+
+        #hero-section figure {
+          position: absolute;
+          right: 0;
+        }
+
+        #hero-section figure img {
+          max-width: 500px;
+          height: auto;
+          object-fit: contain;
+        }
+
+        #hero-section #hero-contents p {
+          font-size: 12px;
+        }
+
+        #brands-section #brands-content {
+          align-items: center;
+        }
+
+        #brands-section #brands-content h1 {
+          font-size: 25px;
+          max-width: 80%;
+          text-align: center;
+        }
+
+        #brands-content p {
+          font-size: 13px;
+          text-align: center;
+          max-width: 70%;
+          font-weight: 500;
+          line-height: 1.6;
+        }
+
+        #fashion-section #fashion-contents h1 {
+          font-size: 25px;
+        }
+
+        #fashion-contents p {
+          font-size: 10px;
+          font-weight: 500;
+        }
+
+        #fashion-container {
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          row-gap: 50px;
+        }
+
+        #new-arrivals-contents {
+          align-items: center;
+        }
+
+        #new-arrivals-contents p {
+          text-align: center;
+          line-height: 1.5;
+          max-width: 70%;
+        }
+
+        #bottomwear-contents {
+          align-items: center;
+        }
+
+        #bottomwear-contents h1 {
+          font-size: 25px;
+        }
+
+        #bottomwear-contents p {
+          max-width: 80%;
+          text-align: center;
+          line-height: 1.5;
+        }
+
+        #footwear-section #footwear-container {
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+        }
+
+        .dark-mode #hamburger .lines {
+          background-color: white;
+        }
+
+        .dark-mode #fashion-container img {
+          background-color: #555;
+        }
+
+        footer {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        footer ul {
+          font-size: 12px;
+        }
+
+        footer ul li a {
+          text-decoration: none;
+          color: whitesmoke;
+        }
+
+        #navlinks.nav-active {
+          left: 0;
+          transition: all 0.5s ease;
+        }
+
+        .dark-mode #navlinks {
+          background-color: #222;
+          color: whitesmoke;
+        }
+      }
+    </style>
+
+    </style>
+  </head>
+  
+  <body>
+    <!--header or navigation bar-->
+    <header>
+      <!---hamburger menu-->
+      <div id="hamburger">
+        <span class="lines"></span>
+        <span class="lines"></span>
+        <span class="lines"></span>
+      </div>
+      <!--logo container-->
+      <div id="logo-container">
+        <h2>ZEEV-STYLE</h2>
+      </div>
+      <!---search bar-->
+      <div id="search-container">
+        <input type="search" placeholder="Search..." />
+        <i class="fas fa-search"></i>
+      </div>
+      <!---navigation and navlinks-->
+      <nav id="navigation">
+        <ul id="navlinks">
+          <li><a href="#">Home</a></li>
+          <li>
+            <a href="#">Brands <i class="fas fa-chevron-down"></i></a>
+          </li>
+          <li>
+            <a href="#">New Arrivals <i class="fas fa-chevron-down"></i></a>
+          </li>
+          <li><a href="#">Collection</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </nav>
+
+      <button>SHOP NOW</button>
+      <i class="fas fa-moon"></i>
+    </header>
+
+    <!---header complted-->
+    <!--hero section start-->
+    <section id="hero-section">
+      <!--hero contents-->
+      <div id="hero-contents">
+        <h1>FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
+        <p>
+          Browse through our diverse range of meticuliusely crafted
+          garments.designed to bring out your individually and cater to your
+          sense of style.
+        </p>
+        <!--hero button-->
+        <button type="button">
+          Shop Now <i class="fas fa-shopping-bag"></i>
+        </button>
+        <!---article container -->
+        <div id="articles-container">
+          <!--article 1-->
+          <article>
+            <h2>200+</h2>
+            <a href="#">International Brands</a>
+          </article>
+          <!--article 2-->
+          <article>
+            <h2>2,000+</h2>
+            <a href="#">High-Quality Products</a>
+          </article>
+          <!--article 3-->
+          <article>
+            <h2>30,000+</h2>
+            <a href="#">Happy Customers</a>
+          </article>
+        </div>
+      </div>
+      <!---hero image-->
+      <figure>
+        <img
+          src="remove bg/Shoulder_Pad_Logo_T-Shirt_-_White___M-removebg-preview.png"
+          alt=""
+        />
+      </figure>
+    </section>
+    <marquee behavior="" direction=""> </marquee>
+    <!---Brands Section-->
+    <section id="brands-section">
+      <!--brands content-->
+      <div id="brands-content">
+        <h1>Discover Our Trendy and Premium Brands</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, sit?
+        </p>
+        <!---btns-->
+        <button>View More <i class="fas fa-arrow-right"></i></button>
+      </div>
+      <!---brands container-->
+      <marquee behavior="" direction="">
+        <div id="brands-container">
+          <img src="logos/Adidas_Logo.svg" alt="" />
+          <img src="logos/american-eagle-outfitters.svg" alt="" />
+          <img src="logos/Gucci-Logo.wine.svg" alt="" />
+          <img src="logos/new-gap-logo.svg" alt="" />
+          <img src="logos/ralphlauren.svg" alt="" />
+          <img src="logos/zara-logo-1.svg" alt="" />
+          <img src="logos/versace-logo-1.svg" alt="" />
+          <img src="logos/nike-11.svg" alt="" />
+          <img src="logos/puma-logo.svg" alt="" />
+        </div>
+      </marquee>
+    </section>
+    <!---fashion section-->
+    <section id="fashion-section">
+      <!---fashion contents-->
+      <div id="fashion-contents">
+        <h1>Discover Stunning Dresses</h1>
+        <p>Find the latest trends in dreeses from casual to elegant</p>
+      </div>
+      <!---fashion container-->
+      <div id="fashion-container">
+        <img src="remove bg/download__12_-removebg-preview.png" alt="" />
+        <img src="remove bg/download__5_-removebg-preview.png" alt="" />
+        <img
+          src="remove bg/Fluent_Oversize_Knit_Cardigan_-_Blue___S-removebg-preview.png"
+          alt=""
+        />
+      </div>
+    </section>
+    <section id="topwear-section">
+      <div id="new-arrivals-contents">
+        <h1>New Arrivals</h1>
+        <p>
+          Check out the latest additions to our collection. Stay ahead of the
+          trends with our new arrivals.
+        </p>
+      </div>
+      <!---topwear container--->
+      <div id="topwear-container" class="product-container">
+        <!---article 1-->
+        <article>
+          <img
+            src="remove bg/Abercrombie___Fitch___Authentic_American_clothing_since_1892-removebg-preview.png"
+            alt=""
+          />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Flannel Shirt</a>
+          <p>$30.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!---article 2-->
+        <article>
+          <img
+            src="remove bg/Camisas_de_hombre___Nueva_Colección___Bershka_Mexico-removebg-preview.png"
+            alt=""
+          />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Solid Shirt</a>
+          <p>$50.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!---article 3-->
+        <article>
+          <img src="remove bg/download__8_-removebg-preview.png" alt="" />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Denim Jacket</a>
+          <p>$60.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!---article 4-->
+        <article>
+          <img src="remove bg/download__9_-removebg-preview.png" alt="" />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Traveling Jacket</a>
+          <p>$70.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!----article 5-->
+        <article>
+          <img src="remove bg/download__11_-removebg-preview (1).png" alt="" />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Color Shirt</a>
+          <p>$80.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!---article 6-->
+        <article>
+          <img src="remove bg/download__10_-removebg-preview.png" alt="" />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Textured Shirt</a>
+          <p>$90.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!---article 7-->
+        <article>
+          <img
+            src="remove bg/hmgoepprod__768_1152_-removebg-preview.png"
+            alt=""
+          />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Casual Combo</a>
+          <p>$100.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!--article 8-->
+        <article>
+          <img
+            src="remove bg/Sadsmile_Jersey_PK_T-shirt-removebg-preview.png"
+            alt=""
+          />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Casual Combo</a>
+          <p>$100.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!---articke 9-->
+        <article>
+          <img
+            src="remove bg/WE11-DONE_COM___We11done_Official_Website-removebg-preview.png"
+            alt=""
+          />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Casual Combo</a>
+          <p>$100.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!--article 10-->
+        <article>
+          <img src="remove bg/download__6_-removebg-preview.png" alt="" />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Casual Combo</a>
+          <p>$100.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!--artivle 11-->
+        <article>
+          <img src="remove bg/download__7_-removebg-preview.png" alt="" />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Casual Combo</a>
+          <p>$100.00</p>
+          <button>Buy Now</button>
+        </article>
+      </div>
+    </section>
+
+    <!----bottomwear section-->
+    <section id="bottomwear-section">
+      <!--bottomwear content-->
+      <div id="bottomwear-contents">
+        <h1>Stylish Bottomwear</h1>
+        <p>
+          Explore our collection of trendy and comfortable bottomwear. From
+          casual jeans to formal trousers.
+        </p>
+      </div>
+
+      <!---bottomwear container-->
+      <div id="bottomwear-container" class="product-container">
+        <!--article 1-->
+        <article>
+          <img
+            src="remove bg/COUPON_CHOR_American_Overalls_Men_s_Autumn_And_Winter_Fleece-lined_Overweight_Man_Loose_Plus-sized_Plus_Size_Straight_Casual_Men_Trousers_Fashion_Brand_9931_Army_Green__Spring_and_Autumn_-M-removebg-p.png"
+            alt=""
+          />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Baggy Fit</a>
+          <p>$20.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!---article 2-->
+        <article>
+          <img src="remove bg/download__4_-removebg-preview.png" alt="" />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Slim fit</a>
+          <p>$30.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!--article 3-->
+        <article>
+          <img src="remove bg/download-removebg-preview.png" alt="" />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Baggy Jeans</a>
+          <p>$40.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!---article 4-->
+        <article>
+          <img
+            src="remove bg/Men_s_Bottoms__Pants__Shorts___Trendy_Men_s_Fashion-removebg-preview.png"
+            alt=""
+          />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Straight fit</a>
+          <p>$60.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!---article 5-->
+        <article>
+          <img
+            src="remove bg/Men_s_Parachute_Cargo_Y2K_Pants-removebg-preview.png"
+            alt=""
+          />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Denim Raw</a>
+          <p>$40.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!---article 6-->
+        <article>
+          <img src="remove bg/LOJA_ONLINE-removebg-preview.png" alt="" />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Korean Fit</a>
+          <p>$60.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!---article 7-->
+        <article>
+          <img
+            src="remove bg/Legendary_Sweat_Short_-_3-removebg-preview.png"
+            alt=""
+          />
+          <!---rattings-->
+          <div class="star-container">
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Loose Fit</a>
+          <p>$80.00</p>
+          <button>Buy Now</button>
+        </article>
+      </div>
+    </section>
+
+    <!---footwear-section-->
+    <section id="footwear-section">
+      <!---foot wear container-->
+      <div id="footwear-container" class="product-container">
+        <!---article 1-->
+        <article>
+          <img
+            src="remove bg/Air_Jordan_1_Retro_Obsidian-removebg-preview.png"
+            alt=""
+          />
+          <!---rattings star-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Casual Sneaker</a>
+          <p>$30.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!--article 2-->
+        <article>
+          <img
+            src="remove bg/Nike_I_Shade_Studios-removebg-preview.png"
+            alt=""
+          />
+          <!---rattings star-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Trendy Sneaker</a>
+          <p>$60.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!--article 3-->
+        <article>
+          <img
+            src="remove bg/Dunk_Low_Retro___DV0833-115-removebg-preview.png"
+            alt=""
+          />
+          <!---rattings star-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">Branded Sneaker</a>
+          <p>$100.00</p>
+          <button>Buy Now</button>
+        </article>
+        <!---article 4-->
+        <article>
+          <img
+            src="remove bg/Nike_I_Shade_Studios-removebg-preview.png"
+            alt=""
+          />
+          <!---rattings star-->
+          <div class="star-container">
+            <span><i class="fas fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+            <span><i class="fa regular fa-star"></i></span>
+          </div>
+          <a href="#">High Top Sneaker</a>
+          <p>$200.00</p>
+          <button>Buy Now</button>
+        </article>
+      </div>
+    </section>
+    <footer>
+      <!---footer links-->
+      <ul id="footer-links" class="footer-links">
+        <h3>Quick Links</h3>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Brands</a></li>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Collection</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+
+      <!---main footer links-->
+      <ul id="main-links" class="footer-links">
+        <h3>Main Links</h3>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditons</a></li>
+        <li><a href="#">Help center</a></li>
+      </ul>
+
+      <!---onlineshop-->
+      <ul id="online-shop">
+        <h3>Online Shop</h3>
+        <li><a href="#">Top wear</a></li>
+        <li><a href="#">Bottom wear</a></li>
+        <li><a href="#">Footwear</a></li>
+        <li><a href="#">Feedbacks</a></li>
+        <li><a href="#">Subscription</a></li>
+      </ul>
+
+      <!--social links-->
+      <ul id="social-links" class="footer-links">
+        <h3>Follow Us</h3>
+        <li>
+          <a href="#">Facebook<i class="fab fa-facebook"></i></a>
+        </li>
+        <li>
+          <a href="#">Instagram<i class="fab fa-instagram"></i></a>
+        </li>
+        <li>
+          <a href="#">Twitter<i class="fab fa-twitter"></i></a>
+        </li>
+
+        <li>
+          <a href="#">Google<i class="fab fa-google"></i></a>
+        </li>
+        <li>
+          <a href="#">Telegram<i class="fab fa-telegram"></i></a>
+        </li>
+      </ul>
+
+      <!---bottotm contents-->
+      <div id="bottom-footer">
+        <p>&copy; ZEEV-STYLE 2025 All Rights Reserved.</p>
+      </div>
+    </footer>
+    <!--javascript-->
+    <script>
+
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('/service-worker.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(error => {
+            console.log('ServiceWorker registration failed: ', error);
+          });
+      });
+    }
+
+      /* darkmode */
+      var darkModeBtn = document.querySelector(".fa-moon");
+
+      darkModeBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+      });
+
+      //side bar
+
+      var hamburgerMenu = document.getElementById("hamburger");
+      var navLinks = document.getElementById("navlinks");
+
+      hamburgerMenu.addEventListener("click", () => {
+        navLinks.classList.toggle("nav-active");
+      });
+    </script>
+  </body>
+</html>
+
